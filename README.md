@@ -127,6 +127,7 @@ src/
 data/                synthetic driver data
 outputs/             CSV tables and charts
 reports/             quarterly board outlook (Markdown)
+notebooks/           exploratory data analysis (EDA) of the actuals
 tests/               checks that customers, revenue and the bridge add up
 ```
 

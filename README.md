@@ -10,6 +10,25 @@ In FP&A the revenue forecast is not one number. It is a budget set before the ye
 
 I wanted a model where every revenue line can be traced back to a driver that someone in the business owns (sales, customer success, pricing, partners), and where budget, outlook and plan are calculated in exactly the same way.
 
+## Scope: revenue and margin forecasting
+
+The scope comes from a typical FP&A job description: own the revenue forecast across forecast, budget, outlook and long-term plan, covering business model mix, commission rate, margin, booking timing, cancellations, coupons and net revenue, and lead a quarterly outlook for the board. This is how each part works for a subscription software company:
+
+| Task | In a subscription software company | Where in the project |
+|---|---|---|
+| Forecast | Monthly forecast of drivers for the rest of the year | `src/forecast.py` |
+| Budget | Plan for 2026, set in December 2025 | `src/plan.py`, `make_budget` |
+| Outlook | Actuals to date + forecast: Q2 outlook (6+6) and Q3 outlook (9+3) | `src/forecast.py`, `make_outlook` |
+| Long-term plan | 2027-2029, starting from the Q3 outlook | `src/plan.py`, `make_long_term_plan` |
+| Business model mix | Subscription vs onboarding services; Mid-market vs Enterprise; direct vs partner sales | Revenue lines and segment table |
+| Commission rate | Commission paid to reseller partners on partner-sold revenue | `partner_share`, `commission_rate` |
+| Margin | Gross margin by revenue line (subscription and services) after hosting, support, delivery and licence costs | `gross_profit`, `gross_margin` |
+| Booking window | When new customers sign: seasonality of new wins (weak summer, strong December) and the January price increase | `new_customers`, `NEW_CUSTOMER_SEASONALITY` |
+| Cancellations | Customer churn per month | `churn_rate` |
+| Coupons | Discounts on the list price, including a Q2 coupon campaign | `discount_rate` |
+| Net revenue | List revenue minus discounts and partner commission, plus services | `net_revenue` |
+| Quarterly outlook for the board | Q3 outlook report with variance to budget, bridge, scenarios, risks and plan | `reports/board_outlook_2026_Q3.md` |
+
 ## Business questions
 
 | Question | Where in the project |
